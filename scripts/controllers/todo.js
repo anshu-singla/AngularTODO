@@ -9,7 +9,7 @@
  */
 angular.module('yoworkApp')
   .controller('TodoCtrl', function ($scope) {
-    $scope.todos= ['Item 1','Item 2','Item 3','Item 4'];
+    $scope.todos= [];
     $scope.addTodo=function(){
       if($scope.addTodo){
         $scope.todos.push(this.todo);
