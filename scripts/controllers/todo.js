@@ -8,8 +8,15 @@
  * Controller of the yoworkApp
  */
 angular.module('yoworkApp')
-  .controller('TodoCtrl', function ($scope) {
-    $scope.todos= [];
+
+  .controller('TodoCtrl',function($scope, localStorageService){
+
+    $scope.todos = [];
+    var todoInStore = localStorageService.get('todos');
+    $scope.todos = todoInStore || [];
+    $scope.$watch('todos', function () {
+      localStorageService.set('todos', $scope.todos);
+    }, true);
     $scope.addTodo=function(){
       if($scope.addTodo){
         $scope.todos.push(this.todo);
@@ -20,3 +27,4 @@ angular.module('yoworkApp')
       $scope.todos.splice(index,1);
     };
   });
+
